@@ -28,11 +28,12 @@ public class DefaultWhitelistController implements WhitelistController{
     public ResponseEntity<?> addIpToWhitelist(@Valid @RequestBody WhitelistRequest request){
         System.out.println(request);
         try {
-            service.saveToFile(request);
+            WhitelistStorageModel data = service.saveToFile(request);
+            return new ResponseEntity<>(data, HttpStatus.CREATED);
         }catch (IOException | URISyntaxException e){
-            e.printStackTrace();    //prints exception if any
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(request, HttpStatus.CREATED);
+
     }
 
     @Override
@@ -42,9 +43,9 @@ public class DefaultWhitelistController implements WhitelistController{
             List<WhitelistStorageModel> data = service.retrieveAll();
             return new ResponseEntity<>(data, HttpStatus.OK);
         } catch (IOException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (URISyntaxException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
