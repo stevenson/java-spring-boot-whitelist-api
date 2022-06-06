@@ -6,6 +6,7 @@ import com.stevenson.whitelist.model.WhitelistStorageModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -31,10 +32,15 @@ public class DefaultFileService implements FileService{
             PrintWriter out = new PrintWriter(writer);
             out.println(request.getIp()+","+request.getEnvironment()+","+request.getApp());
             writer.close();
+            WhitelistStorageModel model = WhitelistStorageModel.builder()
+                    .ip(request.getIp())
+                    .environment(request.getEnvironment())
+                    .app(request.getApp())
+                    .build();
+            return model;
         }else{
             throw new ApiStorageException("the entry already exists");
         }
-        return null;
     }
 
     @Override
