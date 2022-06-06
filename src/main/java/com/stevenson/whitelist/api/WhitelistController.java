@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 
 public interface WhitelistController {
     ResponseEntity<?> addIpToWhitelist(WhitelistRequest Request) throws IOException, URISyntaxException;

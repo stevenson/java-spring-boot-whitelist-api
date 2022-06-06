@@ -12,7 +12,6 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,12 +36,12 @@ class DefaultWhitelistControllerTest {
     void addIpToWhitelist() throws IOException {
         WhitelistRequest request = WhitelistRequest.builder()
                 .ip("192.168.0.1")
-                .environment("dev")
+                .environment("DEV")
                 .app("app1")
                 .build();
         WhitelistStorageModel sm = WhitelistStorageModel.builder()
                 .ip("192.168.0.1")
-                .environment("dev")
+                .environment("DEV")
                 .app("app1")
                 .build();
         given(this.mockService.saveToFile(any())).willReturn(sm);
@@ -60,7 +59,7 @@ class DefaultWhitelistControllerTest {
     void getAllWhitelist() throws IOException {
         WhitelistStorageModel sm = WhitelistStorageModel.builder()
                 .ip("192.168.0.1")
-                .environment("dev")
+                .environment("DEV")
                 .app("app1")
                 .build();
         List<WhitelistStorageModel> list = new ArrayList<>();

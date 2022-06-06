@@ -16,9 +16,9 @@ import java.util.List;
 @RequestMapping("api/v1/whitelists")
 @RestController
 public class DefaultWhitelistController implements WhitelistController{
-    @Autowired
-    private final FileService service;
 
+    private final FileService service;
+    @Autowired
     public DefaultWhitelistController(FileService service){
         this.service = service;
     }

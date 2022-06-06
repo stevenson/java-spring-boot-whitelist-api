@@ -5,9 +5,9 @@
 server:
   error:
     include-message: always
-    include-binding-errors: never
+    include-binding-errors: always
     include-stacktrace: never
     include-exception: false
   port: 8080
 storage:
-  filepath: "/tmp/directory/whitelist.txt"
+  filepath: "./whitelist.txt"

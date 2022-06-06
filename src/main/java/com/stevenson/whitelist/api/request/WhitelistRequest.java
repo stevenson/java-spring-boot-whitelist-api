@@ -20,8 +20,12 @@ public class WhitelistRequest {
     )
     @NotBlank(message = "ip string is required")
     private String ip;
+
+
     @NotBlank(message = "environment string is required")
+    @Pattern(regexp = "DEV|STAGE|PROD", message="Environment may only be DEV, STAGE, or PROD")
     private String environment;
+
     @NotBlank(message = "app string is required")
     private String app;
 
